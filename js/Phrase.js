@@ -39,7 +39,7 @@ class Phrase {
     let letters = document.querySelectorAll('.letter.' + key);
 
     letters.forEach(letter => {
-      letter.className = 'show letter';
+      letter.className = `show letter ${key} animated flash`;
     });
   }
 }

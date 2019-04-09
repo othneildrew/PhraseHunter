@@ -54,6 +54,7 @@ class Game {
     let hearts = document.querySelectorAll('.tries img');
     this.missed = this.missed + 1;
     hearts[5 - this.missed].src = 'images/lostHeart.png';
+    hearts[5 - this.missed].className = 'animated heartBeat';
 
     if(this.missed >= 5) {
       game.gameOver();
@@ -61,8 +62,8 @@ class Game {
   }
 
   checkForWin () {
-    let totalLetters = document.querySelectorAll('.letter');
-    let shownLetters = document.querySelectorAll('.show.letter');
+    let totalLetters = document.querySelectorAll('li.letter');
+    let shownLetters = document.querySelectorAll('li.show.letter');
 
     if (shownLetters.length === totalLetters.length) {
       return true;
@@ -84,5 +85,7 @@ class Game {
 
     __('#overlay').style.display = 'flex';
     __('#btn__reset').textContent = 'Start New Game';
+
+    init();
   }
 }

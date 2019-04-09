@@ -40,6 +40,7 @@ const init = () => {
 
   hearts.forEach(heart => {
     heart.src = 'images/liveHeart.png';
+    heart.className = '';
   });
 }
 
