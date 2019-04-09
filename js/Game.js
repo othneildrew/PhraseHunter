@@ -1,7 +1,9 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
-
+/*** Treehouse FSJS Techdegree
+  * Project 4 - OOP Game App
+  * The Game class accepts a phrases parameter and handles showing most of the game
+  * functions like choosing the random phrase and other game interactions
+  * (i.e.: removing a life, checking for win/lose, determining when to end game).
+  **/
 class Game {
   constructor (phrases) {
     this.missed = 0;
@@ -34,7 +36,7 @@ class Game {
       game.removeLife();
     }
 
-    // Show user the keys they have pressed and whether it was correct or not
+    // Show user keys pressed and whether it was correct or not
     keys.forEach(keyLetter => {
       if (keyLetter.innerHTML === key && isCorrectLetter) {
         keyLetter.className = 'key chosen';
@@ -82,7 +84,6 @@ class Game {
       __('#overlay').className = 'lose';
       __('#game-over-message').textContent = 'Game Over! You lost all your hearts ;(';
     }
-
     __('#overlay').style.display = 'flex';
     __('#btn__reset').textContent = 'Start New Game';
 

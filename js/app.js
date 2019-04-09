@@ -1,6 +1,6 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * app.js */
+/*** Treehouse FSJS Techdegree
+  * Project 4 - OOP Game App
+  **/
 
 const phrases = [
   'What Would Jesus Do',
@@ -72,7 +72,7 @@ __('#btn__reset').addEventListener('click', () => {
 
 
 __('#qwerty').addEventListener('click', e => {
-  //console.log(e.target.innerHTML);
+  // Listen for on-screen keyboard event and get/use key pressed
   let isButton = e.target.tagName.toLowerCase();
 
   if (isButton === 'button') {
@@ -83,6 +83,7 @@ __('#qwerty').addEventListener('click', e => {
 
 
 window.addEventListener('keyup', e => {
+  // Listen for physical keyboard event and get/use key pressed
   let loggedKey = e.key.toLowerCase();
 
   if (game) {
@@ -92,3 +93,8 @@ window.addEventListener('keyup', e => {
     }
   }
 });
+
+
+
+// Animate the start button to get user's attention
+__('#btn__reset').className = 'animated infinite bounce delay-3s slow';
