@@ -28,15 +28,19 @@ class Phrase {
 
   checkLetter (key) {
     if (this.phrase.split('').includes(key)) {
+      phrase.showMatchedLetter(key);
       return true;
     } else {
       return false;
     }
   }
 
-  showMatchedLetter () {
+  showMatchedLetter (key) {
+    let letters = document.querySelectorAll('.letter.' + key);
 
-
+    letters.forEach(letter => {
+      letter.className = 'show letter';
+    });
   }
 
 

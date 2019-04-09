@@ -11,7 +11,7 @@ class Game {
 
   startGame () {
     // Hide start screen overlay
-    document.getElementById('overlay').style.display = 'none';
+    __('#overlay').style.display = 'none';
 
     // Get and set game phrase
     phrase = new Phrase(this.getRandomPhrase());
@@ -31,24 +31,23 @@ class Game {
     if (isCorrectLetter) {
       phrase.showMatchedLetter();
     } else {
-      console.log('No matching letter');
       game.removeLife();
     }
 
     // Show user the keys they have pressed and whether it was correct or not
     keys.forEach(keyLetter => {
       if (keyLetter.innerHTML === key && isCorrectLetter) {
-        keyLetter.className = 'chosen';
+        keyLetter.className = 'key chosen';
         keyLetter.disabled = true;
       } else if (keyLetter.innerHTML === key && !isCorrectLetter) {
-        keyLetter.className = 'wrong';
+        keyLetter.className = 'key wrong';
         keyLetter.disabled = true;
       }
     });
 
-
-
-
+    if (game.checkForWin()) {
+      game.gameOver();
+    }
   }
 
   removeLife () {
@@ -62,18 +61,29 @@ class Game {
   }
 
   checkForWin () {
+    let totalLetters = document.querySelectorAll('.letter');
+    let shownLetters = document.querySelectorAll('.show.letter');
 
-    return true;
+    if (shownLetters.length === totalLetters.length) {
+      return true;
+    }
 
-
+    return false;
   }
 
   gameOver () {
-
     let won = game.checkForWin();
-    console.log('GAME OVER. YOU LOST ALL YOUR HEARTS');
 
+    if (won) {
+      __('#overlay').className = 'win';
+      __('#game-over-message').textContent = 'Congratulations! You won! :D';
+    } else {
+      __('#overlay').className = 'lose';
+      __('#game-over-message').textContent = 'Game Over! You lost all your hearts ;(';
+    }
 
+    __('#overlay').style.display = 'flex';
+    __('#btn__reset').textContent = 'Start New Game';
   }
 
 

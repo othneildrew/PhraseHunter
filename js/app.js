@@ -22,11 +22,24 @@ let phrase, game;
 // Functions
 
 /***
-  * Function initializes the program with default values
+  * Initializes the program with default values at start of new game
 **/
 const init = () => {
+  let keys = document.querySelectorAll('.key');
+  let hearts = document.querySelectorAll('.tries img');
+  phrase = null;
+  game = null;
 
-  //let tries = document.querySelectorAll('.tries');
+  __('.section#phrase > ul').innerHTML = '';
+
+  keys.forEach(key => {
+    key.className = 'key';
+    key.disabled = false;
+  });
+
+  hearts.forEach(heart => {
+    heart.src = 'images/liveHeart.png';
+  });
 
 
 
@@ -42,10 +55,10 @@ const randomNumGen = (max) => {
 
 
 /***
-  * Shortcut function to document.getElementById
+  * Shortcut function to document.querySelector
 **/
 const __ = (x) => {
-  return document.getElementById(x);
+  return document.querySelector(x);
 }
 
 
@@ -69,16 +82,16 @@ const __ = (x) => {
 
 
 // Event Handlers
-__('btn__reset').addEventListener('click', () => {
+__('#btn__reset').addEventListener('click', () => {
+  init();
   game = new Game(phrases);
   game.startGame();
-  console.log(game);
 });
 
 
 
 
-__('qwerty').addEventListener('click', (e) => {
+__('#qwerty').addEventListener('click', (e) => {
   //console.log(e.target.innerHTML);
   let isButton = e.target.tagName.toLowerCase();
 
