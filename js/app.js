@@ -15,11 +15,11 @@ const phrases = [
   'Time Is Money'
 ];
 
+let phrase, game, attemptedLetters;
 
 
-let phrase, game;
 
-// Functions
+// FUNCTIONS
 
 /***
   * Initializes the program with default values at start of new game
@@ -29,6 +29,7 @@ const init = () => {
   let hearts = document.querySelectorAll('.tries img');
   phrase = null;
   game = null;
+  attemptedLetters = Array();
 
   __('.section#phrase > ul').innerHTML = '';
 
@@ -40,10 +41,8 @@ const init = () => {
   hearts.forEach(heart => {
     heart.src = 'images/liveHeart.png';
   });
-
-
-
 }
+
 
 /***
   * Generates a random number from 0 to 'max'
@@ -51,7 +50,6 @@ const init = () => {
 const randomNumGen = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
 }
-
 
 
 /***
@@ -63,25 +61,8 @@ const __ = (x) => {
 
 
 
+// EVENT HANDLERS
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Event Handlers
 __('#btn__reset').addEventListener('click', () => {
   init();
   game = new Game(phrases);
@@ -89,9 +70,7 @@ __('#btn__reset').addEventListener('click', () => {
 });
 
 
-
-
-__('#qwerty').addEventListener('click', (e) => {
+__('#qwerty').addEventListener('click', e => {
   //console.log(e.target.innerHTML);
   let isButton = e.target.tagName.toLowerCase();
 
@@ -99,6 +78,16 @@ __('#qwerty').addEventListener('click', (e) => {
     let key = e.target.innerHTML;
     game.handleInteraction(key);
   }
+});
 
 
+window.addEventListener('keyup', e => {
+  let loggedKey = e.key.toLowerCase();
+
+  if (game) {
+    if ((/^[a-z]{1}$/).test(loggedKey) && !attemptedLetters.includes(loggedKey)) {
+      attemptedLetters.push(loggedKey);
+      game.handleInteraction(loggedKey);
+    }
+  }
 });

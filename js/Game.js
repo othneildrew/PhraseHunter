@@ -85,6 +85,4 @@ class Game {
     __('#overlay').style.display = 'flex';
     __('#btn__reset').textContent = 'Start New Game';
   }
-
-
 }

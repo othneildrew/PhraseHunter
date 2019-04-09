@@ -42,6 +42,4 @@ class Phrase {
       letter.className = 'show letter';
     });
   }
-
-
 }
